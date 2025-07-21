@@ -3,19 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Ameen Mhmd | Developer for Hire</title>
+  <title>Ameen Mh | Developer for Hire</title>
   <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap" rel="stylesheet" />
   <style>
     body, html {
       margin: 0; padding: 0; height: 100%;
       font-family: 'Rubik', sans-serif;
-      background: #e6f0fa; /* very light sky blue */
-      color: #1a2a55; /* dark blue */
+      background: #e6f0fa;
+      color: #1a2a55;
       display: flex;
       justify-content: center;
       align-items: center;
       text-align: center;
       padding: 20px;
+      overflow-x: hidden;
     }
     .container {
       background: white;
@@ -42,7 +43,7 @@
       color: #324a7e;
     }
     .contact-button {
-      background: #4a90e2; /* sky blue */
+      background: #4a90e2;
       color: white;
       border: none;
       padding: 16px 38px;
@@ -63,6 +64,65 @@
       box-shadow: 0 8px 20px rgba(53, 122, 189, 0.6);
       outline: none;
     }
+    /* Modal styles */
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(26, 42, 85, 0.6);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+    .modal {
+      background: white;
+      border-radius: 14px;
+      padding: 30px 40px;
+      max-width: 360px;
+      width: 90%;
+      box-shadow: 0 12px 30px rgba(26, 42, 85, 0.3);
+      position: relative;
+      text-align: left;
+    }
+    .modal h2 {
+      margin-top: 0;
+      color: #1a2a55;
+      font-weight: 700;
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+    }
+    .email-container {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #324a7e;
+      cursor: pointer;
+      user-select: all;
+    }
+    .email-container svg {
+      width: 24px;
+      height: 24px;
+      fill: #d93025; /* Gmail red */
+      flex-shrink: 0;
+    }
+    .modal-close {
+      position: absolute;
+      top: 14px;
+      right: 18px;
+      background: none;
+      border: none;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #4a90e2;
+      cursor: pointer;
+      transition: color 0.2s ease;
+    }
+    .modal-close:hover {
+      color: #357abd;
+    }
+    /* Responsive */
     @media (max-width: 480px) {
       .container {
         padding: 35px 25px;
@@ -78,15 +138,81 @@
         padding: 14px 30px;
         font-size: 1.1rem;
       }
+      .modal {
+        padding: 25px 20px;
+      }
+      .modal h2 {
+        font-size: 1.5rem;
+      }
+      .email-container {
+        font-size: 1.1rem;
+      }
     }
   </style>
 </head>
 <body>
-  <main class="container" role="main">
-    <h1>Ameen Mhmd</h1>
+  <main class="container" role="main" aria-labelledby="main-title">
+    <h1 id="main-title">Ameen Mh</h1>
     <p>React Native & Cross-Platform Mobile Developer available for freelance projects.<br />
        Building performant, user-friendly apps tailored to your needs.</p>
-    <a href="mailto:ameenmh.dev@gmail.com" class="contact-button" aria-label="Contact Ameen Mh via email">Contact Me</a>
+    <button class="contact-button" id="open-modal-btn" aria-haspopup="dialog" aria-controls="contact-modal">Contact Me</button>
   </main>
+
+  <!-- Modal -->
+  <div class="modal-overlay" id="contact-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" tabindex="-1">
+    <div class="modal">
+      <button class="modal-close" aria-label="Close contact modal" id="close-modal-btn">&times;</button>
+      <h2 id="modal-title">Contact Email</h2>
+      <div class="email-container" id="email-to-copy" tabindex="0" title="Click to copy email">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M12 12.713l11.985-9.713H.015L12 12.713zm0 2.287L.015 5.2v13.6h23.97V5.2l-12 9.8z"/>
+        </svg>
+        <span>ameenmh.dev@gmail.com</span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const openBtn = document.getElementById('open-modal-btn');
+    const closeBtn = document.getElementById('close-modal-btn');
+    const modal = document.getElementById('contact-modal');
+    const emailContainer = document.getElementById('email-to-copy');
+
+    openBtn.addEventListener('click', () => {
+      modal.style.display = 'flex';
+      modal.focus();
+    });
+
+    closeBtn.addEventListener('click', () => {
+      modal.style.display = 'none';
+      openBtn.focus();
+    });
+
+    // Close modal when clicking outside the modal content
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.style.display = 'none';
+        openBtn.focus();
+      }
+    });
+
+    // Copy email to clipboard when clicking the email container
+    emailContainer.addEventListener('click', () => {
+      const email = emailContainer.querySelector('span').textContent;
+      navigator.clipboard.writeText(email).then(() => {
+        alert('Email copied to clipboard!');
+      }).catch(() => {
+        alert('Failed to copy email. Please copy manually.');
+      });
+    });
+
+    // Accessibility: Close modal on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.style.display === 'flex') {
+        modal.style.display = 'none';
+        openBtn.focus();
+      }
+    });
+  </script>
 </body>
 </html>
