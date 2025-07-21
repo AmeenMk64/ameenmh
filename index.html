@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ameen Mhmd | Developer for Hire</title>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    body, html {
+      margin: 0; padding: 0; height: 100%;
+      font-family: 'Rubik', sans-serif;
+      background: #e6f0fa; /* very light sky blue */
+      color: #1a2a55; /* dark blue */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+    }
+    .container {
+      background: white;
+      border-radius: 16px;
+      padding: 50px 40px;
+      max-width: 420px;
+      box-shadow: 0 12px 30px rgba(26, 42, 85, 0.2);
+      transition: box-shadow 0.3s ease;
+    }
+    .container:hover {
+      box-shadow: 0 18px 40px rgba(26, 42, 85, 0.35);
+    }
+    h1 {
+      font-weight: 700;
+      font-size: 3rem;
+      margin-bottom: 12px;
+      letter-spacing: 1.2px;
+    }
+    p {
+      font-weight: 400;
+      font-size: 1.2rem;
+      margin-bottom: 40px;
+      line-height: 1.6;
+      color: #324a7e;
+    }
+    .contact-button {
+      background: #4a90e2; /* sky blue */
+      color: white;
+      border: none;
+      padding: 16px 38px;
+      font-size: 1.2rem;
+      font-weight: 700;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.2s ease;
+      text-decoration: none;
+      display: inline-block;
+      box-shadow: 0 5px 15px rgba(74, 144, 226, 0.4);
+      user-select: none;
+    }
+    .contact-button:hover,
+    .contact-button:focus {
+      background: #357abd;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(53, 122, 189, 0.6);
+      outline: none;
+    }
+    @media (max-width: 480px) {
+      .container {
+        padding: 35px 25px;
+        max-width: 90%;
+      }
+      h1 {
+        font-size: 2.4rem;
+      }
+      p {
+        font-size: 1.1rem;
+      }
+      .contact-button {
+        padding: 14px 30px;
+        font-size: 1.1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="container" role="main">
+    <h1>Ameen Mhmd</h1>
+    <p>React Native & Cross-Platform Mobile Developer available for freelance projects.<br />
+       Building performant, user-friendly apps tailored to your needs.</p>
+    <a href="mailto:ameenmh.dev@gmail.com" class="contact-button" aria-label="Contact Ameen Mh via email">Contact Me</a>
+  </main>
+</body>
+</html>
